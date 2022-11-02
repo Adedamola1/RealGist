@@ -4,9 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity"
-    android:background="#DFB6FF"
-   >
+    android:background="#A1A8B3"
+    tools:context=".MainActivity">
 
 
     <ImageView
@@ -14,31 +13,50 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="168dp"
         android:layout_marginEnd="10dp"
-        android:src="@drawable/welcomescreen"
-        android:text="Hello World!"
+        android:src="@drawable/realgist_removebg_preview"
+        android:transitionName="logo_image"
+        app:layout_constraintBaseline_toTopOf="@+id/txtWelcome"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/txtwelcome"
+        android:id="@+id/txtWelcome"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="471dp"
         android:fontFamily="@font/aclonica"
         android:shadowColor="#95B05FE3"
-        android:text="Let's Get connected"
+        android:text="Real Gist"
         android:textAlignment="center"
-        android:textColor="#514B4B"
-        android:textSize="48sp"
+        android:textColor="#000"
+        android:textSize="70sp"
+        android:transitionName="logo_text"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/imgWelcome"
-        app:layout_constraintVertical_bias="0.283" />
+        app:layout_constraintVertical_bias="0.577" />
+
+    <TextView
+        android:id="@+id/txtSlogan"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Let's Get connected"
+        android:textAlignment="center"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="@+id/imgWelcome"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.914" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
+
+

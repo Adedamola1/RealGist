@@ -3,5 +3,8 @@
     <array name="preloaded_fonts" translatable="false">
         <item>@font/aclonica</item>
         <item>@font/antic</item>
+        <item>@font/baloo_paaji</item>
+        <item>@font/baloo_tamma</item>
+        <item>@font/bungee</item>
     </array>
 </resources>
