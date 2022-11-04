@@ -37,7 +37,7 @@ public class MainActivity extends AppCompatActivity {
 
         //Hooks
         image = findViewById(R.id.imgWelcome);
-        logo = findViewById(R.id.txtWelcome);
+        logo = findViewById(R.id.txtRealGist);
         slogan = findViewById(R.id.txtSlogan);
 
         image.setAnimation(topAnim);

@@ -4,7 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#10d6e0"
     android:orientation="vertical"
     android:padding="20dp"
     tools:context=".Login">
@@ -13,7 +12,7 @@
         android:id="@+id/logoImg"
         android:layout_width="239dp"
         android:layout_height="270dp"
-        android:src="@drawable/realgist_removebg_preview"
+        android:src="@drawable/realgist_transparent"
         android:transitionName="logo_image"/>
 
     <TextView
@@ -23,10 +22,9 @@
         android:layout_gravity="center"
         android:fontFamily="@font/baloo_tamma"
         android:text="WELCOME BACK"
-        android:textColor="#000"
-        android:textSize="60sp"
+        android:textColor="@color/app_color"
+        android:textSize="50sp"
         android:transitionName="logo_text" />
-
 
 
     <LinearLayout
@@ -72,6 +70,7 @@
             android:layout_height="wrap_content"
             android:background="#00000000"
             android:text="Forgot Password?"
+            android:textColor="@color/app_color"
             android:layout_gravity="right"
             android:elevation="0dp"
             android:layout_margin="10dp"/>
@@ -80,7 +79,6 @@
             android:id="@+id/btnLogin"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="#000"
             android:text="Login"
             android:layout_gravity="left"
             android:elevation="0dp"
@@ -93,8 +91,9 @@
             android:layout_height="wrap_content"
             android:background="#00000000"
             android:fontFamily="@font/antic"
-            android:text="NEW USER? SIGN UP"
-            android:textColor="#fff"/>
+            android:textColor="@color/app_color"
+            android:textStyle="bold"
+            android:text="NEW USER? SIGN UP"/>
 
 
     </LinearLayout>

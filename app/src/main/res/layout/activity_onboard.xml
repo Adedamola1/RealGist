@@ -5,7 +5,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".Onboard"
-    android:background="#10d6e0"
     android:orientation="vertical"
     android:padding="20dp">
 
@@ -13,35 +12,56 @@
         android:id="@+id/logoImg"
         android:layout_width="150dp"
         android:layout_height="150dp"
-        android:src="@drawable/realgist"
-        android:layout_gravity="center"/>
+        android:src="@drawable/realgist_transparent"
+        android:layout_gravity="center"
+        android:padding="20dp"/>
 
     <TextView
         android:id="@+id/txtlogoName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="@font/aclonica"
-        android:text="Okay, Let's Meet you"
+        android:text="Let's Get started"
+        android:textColor="@color/app_color"
         android:layout_gravity="center"
-        android:textSize="30sp" />
+        android:textSize="30sp"
+        android:padding="20dp"/>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/txtEmail"
+        android:hint="Email"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+        </com.google.android.material.textfield.TextInputEditText>
+
+    </com.google.android.material.textfield.TextInputLayout>
 
     <Button
-        android:id="@+id/btnSignup"
-        android:layout_width="160dp"
+        android:id="@+id/btnVerify"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="left"
-        android:background="#00000000"
+        android:background="#000"
+        android:text="Verify"
         android:elevation="0dp"
-        android:text="Sign Up" />
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="5dp"/>
 
-    <Button
-        android:id="@+id/btnLogin"
-        android:layout_width="160dp"
+    <TextView
+        android:id="@+id/txtSlogan"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="left"
-        android:background="#00000000"
-        android:elevation="0dp"
-        android:text="Login" />
+        android:text="Let's Get connected"
+        android:textStyle="italic"
+        android:textAlignment="center"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="parent"
 
-
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/txtRealGist"
+        />
 </LinearLayout>
