@@ -108,7 +108,7 @@
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="156dp"
                 android:layout_height="wrap_content"
-                android:hint="Age">
+                android:hint="@string/age">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:layout_width="match_parent"
