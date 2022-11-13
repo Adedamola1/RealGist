@@ -43,8 +43,9 @@ public class Onboard extends AppCompatActivity {
         btnVerify.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(Onboard.this, profile_setup.class);
+                Intent intent = new Intent(Onboard.this, Sign_up.class);
                 startActivity(intent);
+                finish();
             }
         });
     }

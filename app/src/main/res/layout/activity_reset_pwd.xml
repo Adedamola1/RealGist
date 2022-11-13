@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Onboard"
+    tools:context=".Reset_pwd"
     android:orientation="vertical"
     android:padding="20dp">
 
@@ -51,11 +51,11 @@
     </com.google.android.material.textfield.TextInputLayout>
 
     <Button
-        android:id="@+id/btnVerify"
+        android:id="@+id/btnResetPassword"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="#000"
-        android:text="Verify"
+        android:text="Reset Password"
         android:elevation="0dp"
         android:layout_marginTop="10dp"
         android:layout_marginBottom="400dp"/>

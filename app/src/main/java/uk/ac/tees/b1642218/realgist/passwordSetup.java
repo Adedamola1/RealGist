@@ -20,7 +20,7 @@ public class passwordSetup extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,WindowManager.LayoutParams.FLAG_FULLSCREEN);
-        setContentView(R.layout.activity_password_setup);
+        setContentView(R.layout.activity_change_pwd);
 
         btnAcceptPassword = findViewById(R.id.btnAcceptPassword);
 
@@ -28,7 +28,7 @@ public class passwordSetup extends AppCompatActivity {
 
             @Override
             public void onClick(View view){
-                Intent intent = new Intent(passwordSetup.this, profile_setup.class);
+                Intent intent = new Intent(passwordSetup.this, Sign_up.class);
                 startActivity(intent);
             }
 
