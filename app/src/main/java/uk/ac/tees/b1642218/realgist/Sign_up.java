@@ -6,6 +6,7 @@ import android.app.ActivityOptions;
 import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.util.Pair;
 import android.view.View;
 import android.view.WindowManager;
@@ -14,6 +15,9 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.google.android.material.textfield.TextInputLayout;
+
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class Sign_up extends AppCompatActivity {
 
@@ -92,15 +96,18 @@ public class Sign_up extends AppCompatActivity {
     }
 
     private Boolean validateUsername() {
-
         String val = txtUsername.getEditText().getText().toString();
-        String noWhiteSpace = "(?=\\S+$)";
+        boolean hasWhiteSpace = Pattern.matches("\\s+", val);
 
-        if (val.length() >= 10){
-            txtFirstName.setError("Username too long");
+        if (val.isEmpty()){
+            txtUsername.setError("Field cannot be empty");
             return false;
         }
-        else if (!val.matches(noWhiteSpace)){
+        else if (val.length() >= 10){
+            txtUsername.setError("Username too long");
+            return false;
+        }
+        else if (val.contains(" ")){
             txtUsername.setError("should not have white space");
             return false;
         }

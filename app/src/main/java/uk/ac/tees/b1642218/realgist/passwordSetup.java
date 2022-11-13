@@ -22,7 +22,7 @@ public class passwordSetup extends AppCompatActivity {
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_change_pwd);
 
-        btnAcceptPassword = findViewById(R.id.btnAcceptPassword);
+        btnAcceptPassword = findViewById(R.id.btnResetPwd_Submit);
 
         btnAcceptPassword.setOnClickListener(new View.OnClickListener() {
 
