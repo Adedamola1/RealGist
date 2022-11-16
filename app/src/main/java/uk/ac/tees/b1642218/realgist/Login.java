@@ -10,7 +10,7 @@ import android.widget.Button;
 
 public class Login extends AppCompatActivity {
 
- Button btnSignup, btnForgotPassword;
+ Button btnSignup, btnForgotPassword, btnLogin;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,7 +26,7 @@ public class Login extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intent = new Intent(Login.this, Onboard.class);
                 startActivity(intent);
-                finish();
+
             }
         });
 
@@ -35,13 +35,11 @@ public class Login extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intent = new Intent(Login.this, Reset_pwd.class);
                 startActivity(intent);
-                finish();
-
             }
         });
     }
 
-    public void onBtnSignUp (View view){
+    public void btnLogin (View view){
 
     }
 }

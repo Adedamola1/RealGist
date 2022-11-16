@@ -1,74 +1,106 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Reset_pwd"
+    tools:context=".Sign_up"
     android:orientation="vertical"
     android:padding="20dp">
 
-    <ImageView
-        android:id="@+id/onboard_back_btn"
-        android:src="@drawable/back_icon"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:padding="5dp"
-        android:transitionName="transition_back_arrow_btn"/>
-
-    <ImageView
-        android:id="@+id/logoImg"
-        android:layout_width="150dp"
-        android:layout_height="150dp"
-        android:src="@drawable/realgist_transparent"
-        android:layout_gravity="center"
-        android:padding="20dp"/>
-
-    <TextView
-        android:id="@+id/txtlogoName"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:fontFamily="@font/aclonica"
-        android:text="Let's Get started"
-        android:textColor="@color/app_color"
-        android:layout_gravity="center"
-        android:textSize="30sp"
-        android:padding="20dp"/>
-
-    <com.google.android.material.textfield.TextInputLayout
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/txtEmail"
-        android:hint="Email"
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+        android:orientation="vertical">
 
-        <com.google.android.material.textfield.TextInputEditText
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/back_icon"
+            android:padding="5dp"/>
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/pwd_lock_icon"
+            android:padding="5dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="50dp"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="10dp"
+            android:fontFamily="@font/muli_extrabold"
+            android:textColor="@color/app_color"
+            android:gravity="center"
+            android:text="Forget Password"
+            android:textAlignment="center"
+            android:textAllCaps="true"
+            android:textSize="40sp"/>
+
+
+        <TextView
+            android:id="@+id/txtlogoName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/aclonica"
+            android:text="@string/forgot_pwd_msg"
+            android:textColor="@color/app_color"
+            android:layout_gravity="center"
+            android:textSize="15sp"
+            android:padding="20dp"/>
+
+        <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:inputType="textEmailAddress">
-        </com.google.android.material.textfield.TextInputEditText>
+            android:id="@+id/txtResetEmail"
+            android:hint="Email"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
 
-    </com.google.android.material.textfield.TextInputLayout>
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textEmailAddress">
+            </com.google.android.material.textfield.TextInputEditText>
 
-    <Button
-        android:id="@+id/btnResetPassword"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="#000"
-        android:text="Reset Password"
-        android:elevation="0dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginBottom="400dp"/>
+        </com.google.android.material.textfield.TextInputLayout>
 
-    <TextView
-        android:id="@+id/txtSlogan"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Let's Get connected"
-        android:textAlignment="center"
-        android:textSize="18sp"
-        android:textStyle="italic"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/txtRealGist" />
-</LinearLayout>
+        <Button
+            android:id="@+id/btnResetPassword"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="400dp"
+            android:elevation="0dp"
+            android:text="@string/request_pwd_reset" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btnback_to_login"
+            android:layout_width="match_parent"
+            android:layout_height="98dp"
+            android:background="#00000000"
+            android:fontFamily="@font/antic"
+            android:text="Back to Login"
+            android:textColor="@color/app_color"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/btnResetPassword" />
+
+        <TextView
+            android:id="@+id/txtSlogan"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Let's Get connected"
+            android:textAlignment="center"
+            android:textSize="18sp"
+            android:textStyle="italic"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/txtRealGist" />
+    </LinearLayout>
+
+
+
+    </ScrollView>

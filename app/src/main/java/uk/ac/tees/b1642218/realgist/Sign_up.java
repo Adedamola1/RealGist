@@ -3,7 +3,6 @@ package uk.ac.tees.b1642218.realgist;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.ActivityOptions;
-import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -21,14 +20,15 @@ import java.util.regex.Pattern;
 
 public class Sign_up extends AppCompatActivity {
 
+
+    Button submit;
+    ImageView backbutton;
+    TextView titleText;
     //Declare Variables for validation
     TextInputLayout txtFirstName,txtLastName, txtUsername, phoneNo, txtPassword,
-    txtConfirmPassword;
-    Button submit;
-    TextView titleText;
-
+            txtConfirmPassword;
     //variables for date of birth
-    private DatePickerDialog datePickerDialog;
+
 
 
 
@@ -39,8 +39,10 @@ public class Sign_up extends AppCompatActivity {
         setContentView(R.layout.activity_sign_up);
 
         //Hooks
+
         submit = findViewById(R.id.btnRegisterUser);
         titleText = findViewById(R.id.txtSignup_welcome);
+        backbutton = findViewById(R.id.signup_back_btn);
 
         txtFirstName = findViewById(R.id.txtFirstName);
         txtLastName = findViewById(R.id.txtLastname);
@@ -48,21 +50,13 @@ public class Sign_up extends AppCompatActivity {
         phoneNo = findViewById(R.id.phoneNo);
         txtPassword = findViewById(R.id.txtPassword);
 
-//        submit.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//
-//
-//                if(!validateFirstName()){
-//                    return;
-//                }
-//                else {
-//                    Intent intent = new Intent(Sign_up.this,SignUp2.class);
-//                    startActivity(intent);
-//                }
-//
-//            }
-//        });
+        backbutton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                onBackPressed();
+            }
+        });
+
 
     }
 
@@ -176,13 +170,12 @@ public class Sign_up extends AppCompatActivity {
 
         Intent intent = new Intent(Sign_up.this, SignUp2.class);
 
-
         //Add Transition
-        Pair[] pairs = new Pair[2];
+        Pair[] pairs = new Pair[3];
 
         pairs[0] = new Pair<View,String>(submit, "transition_submit_btn");
         pairs[1] = new Pair<View,String>(titleText, "transition_title_txt");
-
+        pairs[2] = new Pair<View,String>(backbutton, "transition_signup_back_btn");
 
 
         if (!validateFirstName() || !validateLastName() || !validateUsername()
@@ -195,7 +188,6 @@ public class Sign_up extends AppCompatActivity {
             startActivity(intent, options.toBundle());
 
         }
-
 
 
 

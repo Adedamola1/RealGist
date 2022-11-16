@@ -24,7 +24,7 @@
         android:text="WELCOME BACK"
         android:textColor="@color/app_color"
         android:textSize="50sp"
-        android:transitionName="logo_text" />
+        android:transitionName="logo_text"/>
 
 
     <LinearLayout
