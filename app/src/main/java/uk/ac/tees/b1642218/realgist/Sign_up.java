@@ -25,8 +25,8 @@ public class Sign_up extends AppCompatActivity {
     ImageView backbutton;
     TextView titleText;
     //Declare Variables for validation
-    TextInputLayout txtFirstName,txtLastName, txtUsername, phoneNo, txtPassword,
-            txtConfirmPassword;
+    TextInputLayout txtFirstName,txtLastName, txtUsername, txtEmail, txtPwd,
+            txtconfirmPwd;
     //variables for date of birth
 
 
@@ -47,8 +47,8 @@ public class Sign_up extends AppCompatActivity {
         txtFirstName = findViewById(R.id.txtFirstName);
         txtLastName = findViewById(R.id.txtLastname);
         txtUsername = findViewById(R.id.txtUsername);
-        phoneNo = findViewById(R.id.phoneNo);
-        txtPassword = findViewById(R.id.txtPassword);
+        txtEmail = findViewById(R.id.txtEmail);
+        txtPwd = findViewById(R.id.txtPwd);
 
         backbutton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -56,8 +56,6 @@ public class Sign_up extends AppCompatActivity {
                 onBackPressed();
             }
         });
-
-
     }
 
     private Boolean validateFirstName() {
@@ -111,23 +109,28 @@ public class Sign_up extends AppCompatActivity {
         }
     }
 
-    private Boolean validatePhoneNo() {
+    private Boolean validateEmail() {
 
-        String val = phoneNo.getEditText().getText().toString();
+        String val = txtEmail.getEditText().getText().toString();
+        String emailPattern = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+";
 
         if (val.isEmpty()){
-            phoneNo.setError("Field cannot be empty");
+            txtEmail.setError("Field cannot be empty");
+            return false;
+        }else if (!val.matches(emailPattern)){
+            txtEmail.setError("invalid email");
             return false;
         }
         else{
-            phoneNo.setError(null);
+            txtEmail.setError(null);
+
             return true;
         }
     }
 
     private Boolean validatePassword() {
 
-        String val = txtPassword.getEditText().getText().toString();
+        String val = txtPwd.getEditText().getText().toString();
         String passwordValue = "^" +
                 "(?=.*[a-zA-Z])" + //any letter
                 "(?=.+?[0-9])" + //at least 1 digit
@@ -137,30 +140,29 @@ public class Sign_up extends AppCompatActivity {
                 "$"; // atleast 8 characters;
 
         if (val.isEmpty()){
-            txtPassword.setError("Field cannot be empty");
+            txtPwd.setError("Field cannot be empty");
             return false;
         } else if (!val.matches(passwordValue)){
-            txtPassword.setError("Does not meet complexity");
+            txtPwd.setError("Does not meet complexity");
             return false;
         }
         else{
-            txtPassword.setError(null);
+            txtPwd.setError(null);
             return true;
         }
-
-
     }
 
     private Boolean validateComfirmPassword() {
 
-        String val = txtFirstName.getEditText().getText().toString();
+        String val = txtconfirmPwd.getEditText().getText().toString();
 
-        if (val.isEmpty()){
-            txtFirstName.setError("Field cannot be empty");
+        if
+        (val.isEmpty()){
+            txtconfirmPwd.setError("Field cannot be empty");
             return false;
         }
         else{
-            txtFirstName.setError(null);
+            txtconfirmPwd.setError(null);
             return true;
         }
     }
@@ -179,7 +181,7 @@ public class Sign_up extends AppCompatActivity {
 
 
         if (!validateFirstName() || !validateLastName() || !validateUsername()
-        || !validatePhoneNo() || validatePassword()){
+        || !validateEmail() || validatePassword()){
             return;
         }
 

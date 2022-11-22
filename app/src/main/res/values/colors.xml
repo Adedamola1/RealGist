@@ -9,5 +9,6 @@
     <color name="white">#FFFFFFFF</color>
     <color name="app_color">#305086</color>
     <color name="lightWhite">#F1F2F4</color>
+    <color name="accent_color">#E30B0B</color>
 
 </resources>

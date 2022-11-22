@@ -47,7 +47,6 @@ public class Reset_pwd extends AppCompatActivity {
                 public void onClick(View view) {
                     Intent intent = new Intent(Reset_pwd.this, Login.class);
                     startActivity(intent);
-                    finish();
                 }
             });
 
@@ -55,9 +54,7 @@ public class Reset_pwd extends AppCompatActivity {
         backToLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(Reset_pwd.this, Login.class);
-                startActivity(intent);
-                finish();
+                onBackPressed();
             }
         });
 
