@@ -43,11 +43,10 @@ public class SendOTP extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
+
+                //merge country code and phone number
                 String cCode = codePicker.getSelectedCountryCodeWithPlus();
-
-
                 String pNum = phoneNo.getEditText().getText().toString().trim();
-
                 String userphoneNum  = cCode + pNum;
 
                 Log.d(LOG_TAG,userphoneNum);

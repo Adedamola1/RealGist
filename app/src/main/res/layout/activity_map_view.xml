@@ -6,14 +6,25 @@
     android:layout_height="match_parent"
     tools:context=".MapView">
     
-    <com.google.android.gms.maps.MapView
-        android:id="@+id/mapView"
+<!--    <com.google.android.gms.maps.MapView-->
+<!--        android:id="@+id/map_view"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="match_parent"-->
+<!--        app:layout_constraintBottom_toBottomOf="parent"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintTop_toTopOf="parent"-->
+<!--        />-->
+
+    <fragment
+        android:id="@+id/mapviewFrag"
+        class="com.google.android.gms.maps.SupportMapFragment"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        />
+        tools:layout="@layout/browser_actions_context_menu_page" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -4,95 +4,101 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Onboard"
     android:orientation="vertical"
-    android:padding="20dp">
+    android:padding="20dp"
+    tools:context=".Onboard">
 
     <ImageView
         android:id="@+id/onboard_back_btn"
-        android:src="@drawable/back_icon"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:padding="5dp"
-        android:transitionName="transition_back_arrow_btn"/>
+        android:src="@drawable/back_icon"
+        android:transitionName="transition_back_arrow_btn" />
 
     <ImageView
         android:id="@+id/logoImg"
         android:layout_width="150dp"
         android:layout_height="150dp"
-        android:src="@drawable/realgist_transparent"
         android:layout_gravity="center"
-        android:padding="20dp"/>
+        android:padding="20dp"
+        android:src="@drawable/sending_message" />
 
     <TextView
         android:id="@+id/txtlogoName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:fontFamily="@font/aclonica"
-        android:text="Let's Get started"
-        android:textColor="@color/app_color"
         android:layout_gravity="center"
-        android:textSize="30sp"
-        android:padding="20dp"/>
+        android:fontFamily="@font/aclonica"
+        android:text="Almost Done"
+        android:textColor="@color/app_color"
+        android:textSize="30sp" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginEnd="30dp"
+        android:layout_marginBottom="20dp"
+        android:gravity="center"
+        android:text="Enter Mobile Number"
+        android:textColor="@color/app_color"
+        android:textSize="20sp" />
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_marginTop="10dp">
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="30dp"
+        android:orientation="horizontal">
 
         <com.hbb20.CountryCodePicker
+            android:id="@+id/countryCode"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:background="@drawable/black_boarder"
             app:ccp_autoDetectCountry="true"
             app:ccp_showFlag="true"
-            app:ccp_showNameCode="true"
             app:ccp_showFullName="false"
-            android:layout_gravity="center"
-            android:padding="10dp"
-            android:background="@drawable/black_boarder"/>
+            app:ccp_showNameCode="true" />
 
         <View
             android:layout_width="wrap_content"
-            android:layout_height="7dp"
+            android:layout_height="1dp"
             android:layout_gravity="center_vertical"
             android:layout_weight="1" />
 
         <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/phoneNo"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/phoneNo"
-            android:hint="Phone No"
-
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+            android:layout_marginStart="5dp"
+            android:layout_marginEnd="5dp"
+            android:hint="Phone No">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="200dp"
                 android:layout_height="wrap_content"
-                android:inputType="number"></com.google.android.material.textfield.TextInputEditText>
+                android:inputType="phone" />
 
         </com.google.android.material.textfield.TextInputLayout>
     </LinearLayout>
+
 
     <Button
         android:id="@+id/btnVerify"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="#000"
-        android:text="Verify"
-        android:elevation="0dp"
         android:layout_marginTop="10dp"
-        android:layout_marginBottom="400dp"/>
+        android:layout_marginBottom="400dp"
+        android:background="#000"
+        android:elevation="0dp"
+        android:onClick="setUserComplete"
+        android:text="Verify" />
 
-    <TextView
-        android:id="@+id/txtSlogan"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Let's Get connected"
-        android:textAlignment="center"
-        android:textSize="18sp"
-        android:textStyle="italic"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/txtRealGist" />
+
 </LinearLayout>

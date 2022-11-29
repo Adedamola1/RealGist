@@ -1,13 +1,20 @@
 package uk.ac.tees.b1642218.realgist;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.Manifest;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.PersistableBundle;
 import android.provider.Settings;
+import android.view.View;
 import android.widget.Toast;
+
+import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.OnMapReadyCallback;
+import com.google.android.gms.maps.SupportMapFragment;
 import com.karumi.dexter.Dexter;
 import com.karumi.dexter.PermissionToken;
 import com.karumi.dexter.listener.PermissionDeniedResponse;
@@ -15,10 +22,10 @@ import com.karumi.dexter.listener.PermissionGrantedResponse;
 import com.karumi.dexter.listener.PermissionRequest;
 import com.karumi.dexter.listener.single.PermissionListener;
 
-public class MapView extends AppCompatActivity {
+public class MapView extends AppCompatActivity implements OnMapReadyCallback {
 
     boolean isPermissionGranted;
-    MapView mapView;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,13 +34,17 @@ public class MapView extends AppCompatActivity {
 
         //bind mapview with the id in the xml file
 
-//        mapView = findViewById(R.id.mapView);
+
+
 
         checkMyPermission();
 
-//        if (isPermissionGranted){
-//            mapView.getMapAsync();
-//        }
+        if (isPermissionGranted){
+            SupportMapFragment supportMapFragment = (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.mapviewFrag);
+            supportMapFragment.getMapAsync(this);
+
+
+            }
     }
 
 
@@ -64,4 +75,12 @@ public class MapView extends AppCompatActivity {
         }).check();
 
     }
+
+    @Override
+    public void onMapReady(@NonNull GoogleMap googleMap) {
+
+    }
+
 }
+
+

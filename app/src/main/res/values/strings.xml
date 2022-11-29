@@ -12,6 +12,11 @@
     <string name="otp_verification">OTP VERIFICATION</string>
     <string name="real_gist">REAL GIST</string>
     <string name="verify" />
+    <string name="welcome">Welcome Onboard</string>
+    <string name="OTP_Sent">OTP Sent</string>
+    <string name="title_activity_maps">MapsActivity</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 
 
 </resources>

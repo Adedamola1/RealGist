@@ -1,11 +1,8 @@
 package uk.ac.tees.b1642218.realgist;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.app.ActivityOptions;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.util.Pair;
 import android.view.View;
 import android.view.WindowManager;
@@ -13,29 +10,29 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.google.android.material.textfield.TextInputLayout;
+import androidx.appcompat.app.AppCompatActivity;
 
-import java.util.regex.Matcher;
+import com.google.android.material.textfield.TextInputLayout;
+import com.google.firebase.auth.FirebaseAuth;
+
 import java.util.regex.Pattern;
 
-public class Sign_up extends AppCompatActivity {
 
+public class Sign_up extends AppCompatActivity {
 
     Button submit;
     ImageView backbutton;
     TextView titleText;
+
+    FirebaseAuth auth;
     //Declare Variables for validation
-    TextInputLayout txtFirstName,txtLastName, txtUsername, txtEmail, txtPwd,
+    TextInputLayout txtFirstName, txtLastName, txtUsername, txtEmail, txtPwd,
             txtconfirmPwd;
-    //variables for date of birth
-
-
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,WindowManager.LayoutParams.FLAG_FULLSCREEN);
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_sign_up);
 
         //Hooks
@@ -44,11 +41,15 @@ public class Sign_up extends AppCompatActivity {
         titleText = findViewById(R.id.txtSignup_welcome);
         backbutton = findViewById(R.id.signup_back_btn);
 
+        auth = FirebaseAuth.getInstance();
+
         txtFirstName = findViewById(R.id.txtFirstName);
         txtLastName = findViewById(R.id.txtLastname);
         txtUsername = findViewById(R.id.txtUsername);
         txtEmail = findViewById(R.id.txtEmail);
         txtPwd = findViewById(R.id.txtPwd);
+        txtconfirmPwd = findViewById(R.id.txtconfirmPwd);
+
 
         backbutton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -56,15 +57,15 @@ public class Sign_up extends AppCompatActivity {
                 onBackPressed();
             }
         });
+
     }
 
     private Boolean validateFirstName() {
         String val = txtFirstName.getEditText().getText().toString();
-        if (val.isEmpty()){
+        if (val.isEmpty()) {
             txtFirstName.setError("Field cannot be empty");
             return false;
-        }
-        else{
+        } else {
             txtFirstName.setError(null);
             txtFirstName.setErrorEnabled(false);
             return true;
@@ -75,12 +76,11 @@ public class Sign_up extends AppCompatActivity {
 
         String val = txtLastName.getEditText().getText().toString();
 
-        if (val.isEmpty()){
+        if (val.isEmpty()) {
             txtLastName.setError("Field cannot be empty");
 
             return false;
-        }
-        else{
+        } else {
             txtLastName.setError(null);
             txtLastName.setErrorEnabled(false);
             return true;
@@ -91,19 +91,16 @@ public class Sign_up extends AppCompatActivity {
         String val = txtUsername.getEditText().getText().toString();
         boolean hasWhiteSpace = Pattern.matches("\\s+", val);
 
-        if (val.isEmpty()){
+        if (val.isEmpty()) {
             txtUsername.setError("Field cannot be empty");
             return false;
-        }
-        else if (val.length() >= 10){
+        } else if (val.length() >= 10) {
             txtUsername.setError("Username too long");
             return false;
-        }
-        else if (val.contains(" ")){
+        } else if (val.contains(" ")) {
             txtUsername.setError("should not have white space");
             return false;
-        }
-        else{
+        } else {
             txtUsername.setError(null);
             return true;
         }
@@ -114,14 +111,13 @@ public class Sign_up extends AppCompatActivity {
         String val = txtEmail.getEditText().getText().toString();
         String emailPattern = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+";
 
-        if (val.isEmpty()){
+        if (val.isEmpty()) {
             txtEmail.setError("Field cannot be empty");
             return false;
-        }else if (!val.matches(emailPattern)){
+        } else if (!val.matches(emailPattern)) {
             txtEmail.setError("invalid email");
             return false;
-        }
-        else{
+        } else {
             txtEmail.setError(null);
 
             return true;
@@ -139,60 +135,59 @@ public class Sign_up extends AppCompatActivity {
                 ".{8,}" +
                 "$"; // atleast 8 characters;
 
-        if (val.isEmpty()){
+        if (val.isEmpty()) {
             txtPwd.setError("Field cannot be empty");
             return false;
-        } else if (!val.matches(passwordValue)){
+        } else if (!val.matches(passwordValue)) {
             txtPwd.setError("Does not meet complexity");
             return false;
-        }
-        else{
+        } else {
             txtPwd.setError(null);
             return true;
         }
     }
 
-    private Boolean validateComfirmPassword() {
+    private Boolean validateConfirmPassword() {
 
         String val = txtconfirmPwd.getEditText().getText().toString();
 
         if
-        (val.isEmpty()){
+        (val.isEmpty()) {
             txtconfirmPwd.setError("Field cannot be empty");
             return false;
-        }
-        else{
+
+        } else if (!txtconfirmPwd.getEditText().getText().toString().equals(txtPwd.getEditText().getText().toString())) {
+            txtconfirmPwd.setError("password does not match");
+            return false;
+        } else {
             txtconfirmPwd.setError(null);
             return true;
         }
     }
 
+    public void btnRegisterUser(View view) {
 
-    public void btnRegisterUser(View view){
 
-        Intent intent = new Intent(Sign_up.this, SignUp2.class);
+        Intent intent = new Intent(Sign_up.this, SendOTP.class);
 
         //Add Transition
         Pair[] pairs = new Pair[3];
 
-        pairs[0] = new Pair<View,String>(submit, "transition_submit_btn");
-        pairs[1] = new Pair<View,String>(titleText, "transition_title_txt");
-        pairs[2] = new Pair<View,String>(backbutton, "transition_signup_back_btn");
+        pairs[0] = new Pair<View, String>(submit, "transition_submit_btn");
+        pairs[1] = new Pair<View, String>(titleText, "transition_title_txt");
+        pairs[2] = new Pair<View, String>(backbutton, "transition_signup_back_btn");
 
 
         if (!validateFirstName() || !validateLastName() || !validateUsername()
-        || !validateEmail() || validatePassword()){
+                || !validateEmail() || !validatePassword() || !validateConfirmPassword()) {
             return;
-        }
-
-        else {
+        } else {
             ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation(Sign_up.this, pairs);
             startActivity(intent, options.toBundle());
-
+            // Toast.makeText(Sign_up.this, R.string.welcome, Toast.LENGTH_LONG).show();
         }
 
-
-
     }
+
 }
 
