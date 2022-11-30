@@ -194,6 +194,8 @@ public class Sign_up extends AppCompatActivity {
             FirebaseFirestore db = FirebaseFirestore.getInstance();
             HashMap<String, Object> user = new HashMap<>();
 
+            //trying to test
+
             String email = txtEmail.getEditText().getText().toString().trim();
             String password = txtPwd.getEditText().getText().toString().trim();
 
@@ -237,6 +239,7 @@ public class Sign_up extends AppCompatActivity {
 
     private void updateUI(FirebaseUser user) {
     }
+
     @Override
     protected void onStart() {
         super.onStart();
