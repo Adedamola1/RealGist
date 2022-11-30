@@ -13,64 +13,64 @@
         android:layout_height="wrap_content"
         android:background="@color/lightWhite">
 
-        <!--        <com.google.android.material.appbar.CollapsingToolbarLayout-->
-        <!--            android:layout_width="match_parent"-->
-        <!--            android:layout_height="wrap_content"-->
-        <!--            android:background="@color/lightWhite"-->
-        <!--            app:contentScrim="@color/cardview_light_background"-->
-        <!--            app:expandedTitleTextAppearance="@style/expandedBarTextStyle"-->
-        <!--            app:layout_scrollFlags="scroll|snap|exitUntilCollapsed"-->
-        <!--            app:title="@string/dashboard_title">-->
+        <com.google.android.material.appbar.CollapsingToolbarLayout
+            app:contentScrim="@color/cardview_light_background"
+            app:expandedTitleTextAppearance="@style/expandedBarTextStyle"
+            app:layout_scrollFlags="scroll|snap|exitUntilCollapsed"
+            app:title="@string/dashboard_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/lightWhite">
 
-        <!--            <LinearLayout-->
-        <!--                android:layout_width="match_parent"-->
-        <!--                android:layout_height="300dp"-->
-        <!--                android:background="@drawable/custom_app_bar_background"-->
-        <!--                android:orientation="vertical"-->
-        <!--                android:paddingHorizontal="20dp">-->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="300dp"
+                android:background="@drawable/custom_app_bar_background"
+                android:orientation="vertical"
+                android:paddingHorizontal="20dp">
 
-        <!--                <TextView-->
-        <!--                    android:layout_width="match_parent"-->
-        <!--                    android:layout_height="wrap_content"-->
-        <!--                    android:layout_marginTop="70dp"-->
-        <!--                    android:text="@string/dashboard_heading"-->
-        <!--                    android:textColor="@android:color/white"-->
-        <!--                    android:textSize="30sp"-->
-        <!--                    android:textStyle="bold" />-->
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="70dp"
+                    android:text="@string/dashboard_heading"
+                    android:textColor="@android:color/white"
+                    android:textSize="30sp"
+                    android:textStyle="bold" />
 
-        <!--                <TextView-->
-        <!--                    android:layout_width="match_parent"-->
-        <!--                    android:layout_height="wrap_content"-->
-        <!--                    android:layout_marginTop="10dp"-->
-        <!--                    android:text="@string/dashboard_sub_title"-->
-        <!--                    android:textColor="@android:color/white"-->
-        <!--                    android:textSize="20sp"-->
-        <!--                    android:textStyle="bold" />-->
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:text="@string/dashboard_sub_title"
+                    android:textColor="@android:color/white"
+                    android:textSize="20sp"
+                    android:textStyle="bold" />
 
-        <!--&lt;!&ndash;                <EditText&ndash;&gt;-->
-        <!--&lt;!&ndash;                    android:layout_width="match_parent"&ndash;&gt;-->
-        <!--&lt;!&ndash;                    android:layout_height="wrap_content"&ndash;&gt;-->
-        <!--&lt;!&ndash;                    android:layout_marginTop="20dp"&ndash;&gt;-->
-        <!--&lt;!&ndash;                    android:height="50dp"&ndash;&gt;-->
-        <!--&lt;!&ndash;                    android:background="@drawable/search_bar_background"&ndash;&gt;-->
-        <!--&lt;!&ndash;                    android:drawableRight="@drawable/search_icon"&ndash;&gt;-->
-        <!--&lt;!&ndash;                    android:hint="@string/search_bar_hint">&ndash;&gt;-->
+                <!--                <EditText-->
+                <!--                    android:layout_width="match_parent"-->
+                <!--                    android:layout_height="wrap_content"-->
+                <!--                    android:layout_marginTop="20dp"-->
+                <!--                    android:height="50dp"-->
+                <!--                    android:background="@drawable/search_bar_background"-->
+                <!--                    android:drawableRight="@drawable/search_icon"-->
+                <!--                    android:hint="@string/search_bar_hint">-->
 
-        <!--&lt;!&ndash;                </EditText>&ndash;&gt;-->
+                <!--                </EditText>-->
 
-        <!--            </LinearLayout>-->
-
-
-        <!--            <androidx.appcompat.widget.Toolbar-->
-        <!--                android:layout_width="match_parent"-->
-        <!--                android:layout_height="?attr/actionBarSize"-->
-        <!--                android:background="@color/app_color"-->
-        <!--                app:titleTextColor="@android:color/white">-->
+            </LinearLayout>
 
 
-        <!--            </androidx.appcompat.widget.Toolbar>-->
+            <androidx.appcompat.widget.Toolbar
+                app:titleTextColor="@android:color/white"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                android:background="@color/app_color">
 
-        <!--        </com.google.android.material.appbar.CollapsingToolbarLayout>-->
+
+            </androidx.appcompat.widget.Toolbar>
+
+        </com.google.android.material.appbar.CollapsingToolbarLayout>
 
 
     </com.google.android.material.appbar.AppBarLayout>
