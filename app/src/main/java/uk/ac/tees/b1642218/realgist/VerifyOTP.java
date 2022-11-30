@@ -23,16 +23,12 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.PhoneAuthCredential;
 import com.google.firebase.auth.PhoneAuthProvider;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.concurrent.TimeUnit;
 
-import uk.ac.tees.b1642218.realgist.utilities.UserHelperClass;
-
 public class VerifyOTP extends AppCompatActivity {
 
-    String txtFirstName, txtLastName, txtUsername, txtphoneNo, txtEmail, txtGender, txtPwd;
+    // String txtFirstName, txtLastName, txtUsername, txtphoneNo, txtEmail, txtGender, txtPwd;
     ImageView verify_back_btn;
     private EditText OTPCode1, OTPCode2, OTPCode3, OTPCode4, OTPCode5, OTPCode6;
     private String verificationId;
@@ -56,13 +52,13 @@ public class VerifyOTP extends AppCompatActivity {
         TextView txtMobileNo = findViewById(R.id.txtMobileNo);
         txtMobileNo.setText(getIntent().getStringExtra("mobile"));
 
-        txtFirstName = getIntent().getStringExtra("firstName");
-        txtLastName = getIntent().getStringExtra("lastName");
-        txtUsername = getIntent().getStringExtra("username");
-        txtphoneNo = getIntent().getStringExtra("PhoneNo");
-        txtEmail = getIntent().getStringExtra("email");
-        txtGender = getIntent().getStringExtra("gender");
-        txtPwd = getIntent().getStringExtra("password");
+//        txtFirstName = getIntent().getStringExtra("firstName");
+//        txtLastName = getIntent().getStringExtra("lastName");
+//        txtUsername = getIntent().getStringExtra("username");
+//        txtphoneNo = getIntent().getStringExtra("PhoneNo");
+//        txtEmail = getIntent().getStringExtra("email");
+//        txtGender = getIntent().getStringExtra("gender");
+//        txtPwd = getIntent().getStringExtra("password");
 
 
         OTPCode1 = findViewById(R.id.OTPCode1);
@@ -97,7 +93,7 @@ public class VerifyOTP extends AppCompatActivity {
                                 OTPCode2.getText().toString() +
                                 OTPCode3.getText().toString() +
                                 OTPCode4.getText().toString() +
-                                OTPCode6.getText().toString() +
+                                OTPCode5.getText().toString() +
                                 OTPCode6.getText().toString();
 
                 if (verificationId != null) {
@@ -114,10 +110,10 @@ public class VerifyOTP extends AppCompatActivity {
                                     progressBar.setVisibility(View.VISIBLE);
                                     btnVerify.setVisibility(View.INVISIBLE);
                                     if (task.isSuccessful()) {
-                                        Intent intent = new Intent(getApplicationContext(), changePwd.class);
+                                        Intent intent = new Intent(getApplicationContext(), Reset_pwd.class);
                                         Toast.makeText(VerifyOTP.this, "The Verification Successful", Toast.LENGTH_LONG).show();
 
-                                        storeNewUserData();
+                                        //storeNewUserData();
 
                                         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                                         startActivity(intent);
@@ -129,19 +125,19 @@ public class VerifyOTP extends AppCompatActivity {
 
                                 }
 
-                                private void storeNewUserData() {
-
-                                    FirebaseDatabase rootNode = FirebaseDatabase.getInstance();
-                                    DatabaseReference reference = rootNode.getReference("Users");
-                                    //OR
-                                    //DatabaseReference reference = FirebaseDatabase.getInstance().getReference();
-                                    reference.setValue("First record!");
-
-                                    UserHelperClass addNewUser = new UserHelperClass(txtFirstName, txtLastName, txtUsername, txtEmail, txtphoneNo, txtGender, txtPwd);
-
-                                    reference.setValue(addNewUser);
-
-                                }
+//                                private void storeNewUserData() {
+//
+//                                    FirebaseDatabase rootNode = FirebaseDatabase.getInstance();
+//                                    DatabaseReference reference = rootNode.getReference("Users");
+//                                    //OR
+//                                    //DatabaseReference reference = FirebaseDatabase.getInstance().getReference();
+//                                    reference.setValue("First record!");
+//
+//                                    UserHelperClass addNewUser = new UserHelperClass(txtFirstName, txtLastName, txtUsername, txtEmail, txtphoneNo, txtGender, txtPwd);
+//
+//                                    reference.setValue(addNewUser);
+//
+//                                }
                             });
                 }
             }

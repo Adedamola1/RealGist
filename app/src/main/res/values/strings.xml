@@ -2,8 +2,8 @@
     <string name="app_name">Real Gist</string>
     <string name="age">Age</string>
     <string name="nametoast_message">Message Sent</string>
-    <string name="forgot_pwd_msg">Provide your registered email address to reset password</string>
-    <string name="request_pwd_reset">Request OTP</string>
+    <string name="forgot_pwd_msg">Your Registered Email address</string>
+    <string name="request_pwd_reset">Recover Password</string>
     <string name="OTP_1stmessage">An OPT will be sent to your registered Mobile number</string>
     <string name="OTP_2ndmessage">Enter the OTP sent to</string>
     <string name="didnt_receive_the_otp">Didnt receive the OTP</string>
@@ -15,6 +15,12 @@
     <string name="welcome">Welcome Onboard</string>
     <string name="OTP_Sent">OTP Sent</string>
     <string name="title_activity_maps">MapsActivity</string>
+
+    <string name="dashboard_title">Dashboard</string>
+    <string name="heading">Find Real Gists happening around you</string>
+    <string name="dashboard_heading">Find Real Gists happening around you</string>
+    <string name="dashboard_sub_title">480 events around you</string>
+    <string name="search_bar_hint">search for an event</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 

@@ -9,12 +9,20 @@ import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.android.material.textfield.TextInputLayout;
+import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.FirebaseFirestore;
 
+import java.util.HashMap;
 import java.util.regex.Pattern;
 
 
@@ -23,11 +31,11 @@ public class Sign_up extends AppCompatActivity {
     Button submit;
     ImageView backbutton;
     TextView titleText;
-
     FirebaseAuth auth;
     //Declare Variables for validation
     TextInputLayout txtFirstName, txtLastName, txtUsername, txtEmail, txtPwd,
             txtconfirmPwd;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -182,11 +190,64 @@ public class Sign_up extends AppCompatActivity {
                 || !validateEmail() || !validatePassword() || !validateConfirmPassword()) {
             return;
         } else {
-            ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation(Sign_up.this, pairs);
-            startActivity(intent, options.toBundle());
-            // Toast.makeText(Sign_up.this, R.string.welcome, Toast.LENGTH_LONG).show();
+
+            FirebaseFirestore db = FirebaseFirestore.getInstance();
+            HashMap<String, Object> user = new HashMap<>();
+
+            String email = txtEmail.getEditText().getText().toString().trim();
+            String password = txtPwd.getEditText().getText().toString().trim();
+
+            user.put("firstname", txtFirstName.getEditText().getText().toString().trim());
+            user.put("lastname", txtLastName.getEditText().getText().toString().trim());
+            user.put("Username", txtUsername.getEditText().getText().toString().trim());
+            user.put("email", txtEmail.getEditText().getText().toString().trim());
+
+
+            auth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+                @Override
+                public void onComplete(@NonNull Task<AuthResult> task) {
+                    if (task.isSuccessful()) {
+                        // Sign in success, update UI with the signed-in user's information
+                        String uid = task.getResult().getUser().getUid();
+                        db.collection("users").document(uid).set(user).addOnCompleteListener(documentReference -> {
+                            FirebaseUser user = auth.getCurrentUser();
+                            updateUI(user);
+                        });
+
+                        ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation(Sign_up.this, pairs);
+                        startActivity(intent, options.toBundle());
+                        // Toast.makeText(Sign_up.this, R.string.welcome, Toast.LENGTH_LONG).show();
+
+                    } else {
+                        // If sign in fails, display a message to the user.
+                        //Log.w(TAG, "createUserWithEmail:failure", task.getException());
+                        Toast.makeText(Sign_up.this, "Authentication failed." + task.getException().getMessage(),
+                                Toast.LENGTH_SHORT).show();
+                        updateUI(null);
+                    }
+                }
+
+
+            });
+
+
         }
 
+    }
+
+    private void updateUI(FirebaseUser user) {
+    }
+    @Override
+    protected void onStart() {
+        super.onStart();
+        FirebaseUser currentUser = auth.getCurrentUser();
+        if (currentUser != null) {
+            reload();
+
+        }
+    }
+
+    private void reload() {
     }
 
 }
