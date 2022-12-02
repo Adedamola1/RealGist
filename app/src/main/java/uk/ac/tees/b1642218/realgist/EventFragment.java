@@ -1,64 +1,299 @@
 package uk.ac.tees.b1642218.realgist;
 
+import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.net.Uri;
 import android.os.Bundle;
-
-import androidx.fragment.app.Fragment;
-
+import android.provider.MediaStore;
+import android.util.Base64;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.FrameLayout;
+import android.widget.ImageView;
+import android.widget.Spinner;
+import android.widget.TextView;
+import android.widget.Toast;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link EventFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
-public class EventFragment extends Fragment {
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
+import androidx.fragment.app.Fragment;
 
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
+import com.google.android.gms.common.api.Status;
+import com.google.android.libraries.places.api.Places;
+import com.google.android.libraries.places.api.model.Place;
+import com.google.android.libraries.places.api.net.PlacesClient;
+import com.google.android.libraries.places.widget.Autocomplete;
+import com.google.android.libraries.places.widget.AutocompleteActivity;
+import com.google.android.libraries.places.widget.model.AutocompleteActivityMode;
+import com.google.android.material.datepicker.MaterialDatePicker;
+import com.google.android.material.textfield.TextInputLayout;
+import com.google.android.material.timepicker.MaterialTimePicker;
+import com.google.android.material.timepicker.TimeFormat;
+import com.google.firebase.firestore.FirebaseFirestore;
 
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
+import java.io.ByteArrayOutputStream;
+import java.io.FileNotFoundException;
+import java.io.InputStream;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.List;
 
-    public EventFragment() {
-        // Required empty public constructor
-    }
+import javax.annotation.Nullable;
 
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment EventFragment.
-     */
-    // TODO: Rename and change types and number of parameters
-    public static EventFragment newInstance(String param1, String param2) {
-        EventFragment fragment = new EventFragment();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
-    }
+
+public class EventFragment extends Fragment implements AdapterView.OnItemSelectedListener {
+
+    ImageView bannerImage;
+    TextView bannerText;
+
+
+    private final ActivityResultLauncher<Intent> pickImage = registerForActivityResult(
+            new ActivityResultContracts.StartActivityForResult(),
+            result -> {
+                if (result.getResultCode() == getActivity().RESULT_OK) {
+                    if (result.getData() != null) {
+                        Uri imageUri = result.getData().getData();
+
+                        InputStream inputStream = null;
+                        try {
+                            inputStream = getContext().getContentResolver().openInputStream(imageUri);
+                        } catch (FileNotFoundException e) {
+                            e.printStackTrace();
+                        }
+                        Bitmap bitmap = BitmapFactory.decodeStream(inputStream);
+                        bannerImage.setImageURI(result.getData().getData());
+                        bannerImage.setImageBitmap(bitmap);
+                        bannerText.setVisibility(View.GONE);
+                        encodeImage = encodeImage(bitmap);
+
+
+                    }
+                }
+            }
+    );
+
+    String locationName, latLong, encodeImage, category, timeText, dateText;
+    EditText venue;
+    TextInputLayout eventDesc, eventTitle;
+    Button createEvent;
+    private View layout;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
+
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_event, container, false);
+        layout = inflater.inflate(R.layout.fragment_event, container, false);
+        Button datepicker = layout.findViewById(R.id.pick_date_btn);
+        Button timeButton = layout.findViewById(R.id.pick_time_button);
+        createEvent = layout.findViewById(R.id.btnCreateEvent);
+        TextView date = layout.findViewById(R.id.show_selected_date);
+        TextView time = layout.findViewById(R.id.time_result_view);
+        bannerText = layout.findViewById(R.id.add_event_banner);
+
+
+        venue = layout.findViewById(R.id.venue);
+        eventDesc = layout.findViewById(R.id.event_description);
+        eventTitle = layout.findViewById(R.id.event_title);
+
+        FrameLayout imageLayout = layout.findViewById(R.id.layout_image);
+        bannerImage = layout.findViewById(R.id.event_banner);
+
+
+        if (!Places.isInitialized()) {
+            Places.initialize(getContext(), "AIzaSyDYHH1pF9YMwYENCSZUD9wppQ4PaTp05pA");
+        }
+
+        venue.setFocusable(false);
+        venue.setOnClickListener(v -> {
+            List<Place.Field> fieldList = Arrays.asList(Place.Field.ADDRESS,
+                    Place.Field.LAT_LNG, Place.Field.NAME);
+            Intent intent = new Autocomplete.IntentBuilder(AutocompleteActivityMode.FULLSCREEN, fieldList)
+                    .build(getContext());
+            startActivityForResult(intent, 100);
+            Log.d("woooow", "onCreateView: ");
+        });
+
+
+        // Create a new Places client instance.
+        PlacesClient placesClient = Places.createClient(getContext());
+
+        MaterialDatePicker picker = MaterialDatePicker.Builder.datePicker()
+                .setTitleText("Select date")
+                .setSelection(MaterialDatePicker.todayInUtcMilliseconds())
+                .build();
+
+        MaterialTimePicker timePicker = new MaterialTimePicker.Builder()
+                .setTimeFormat(TimeFormat.CLOCK_24H)
+                .setHour(12)
+                .setMinute(0)
+                .setTitleText("Select Time")
+                .build();
+
+        datepicker.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                picker.show(getActivity().getSupportFragmentManager(), "Material_Date_Picker");
+                picker.addOnPositiveButtonClickListener(selection -> {
+                    date.setText(picker.getHeaderText());
+                    dateText = picker.getHeaderText();
+                });
+            }
+        });
+
+        timeButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                timePicker.show(getActivity().getSupportFragmentManager(), "Material_Time_Picker");
+                timePicker.addOnPositiveButtonClickListener(selection -> {
+                    time.setText(String.format("%dh:%dmin", timePicker.getHour(), timePicker.getMinute()));
+                    timeText = String.format("%dh:%dmin", timePicker.getHour(), timePicker.getMinute());
+                });
+            }
+        });
+
+        imageLayout.setOnClickListener(v -> {
+            Intent intent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.INTERNAL_CONTENT_URI);
+            intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
+            startActivityForResult(intent, 101);
+        });
+
+        final Spinner spinner = (Spinner) layout.findViewById(R.id.category_spinner);
+        createDropdown(spinner);
+
+
+        String eventdesc = eventDesc.getEditText().getText().toString();
+        String eventtitle = eventTitle.getEditText().getText().toString();
+
+
+        createEvent.setOnClickListener(v -> {
+            FirebaseFirestore db = FirebaseFirestore.getInstance();
+            HashMap<String, Object> createdEvent = new HashMap<>();
+
+            createdEvent.put("eventImage", encodeImage);
+            createdEvent.put("title", eventTitle.getEditText().getText().toString());
+            createdEvent.put("date", dateText);
+            createdEvent.put("time", timeText);
+            createdEvent.put("about", eventDesc.getEditText().getText().toString());
+            createdEvent.put("category", category);
+            createdEvent.put("venue", venue.toString());
+            createdEvent.put("latlong", latLong);
+
+            db.collection("events").add(createdEvent).addOnCompleteListener(documentReference -> {
+                documentReference.addOnSuccessListener(unused -> {
+                            Log.d("SUCCESS ADDING EVENT", "added successfully");
+                            Toast.makeText(getContext(), "Success", Toast.LENGTH_LONG).show();
+                        })
+                        .addOnFailureListener(e -> {
+                            Log.d("ERROR ADDING EVENT", "error: " + e.getMessage());
+                        });
+
+                Log.d("DEBUG",
+                        eventTitle.getEditText().getText().toString() + venue.getText()
+                                + dateText
+                                + timeText
+                                + category);
+            });
+        });
+
+        return layout;
     }
+
+    private void createDropdown(Spinner spinner) {
+        // Spinner click listener
+        spinner.setOnItemSelectedListener(this);
+
+        // Spinner Drop down elements
+        List<String> categories = new ArrayList<>();
+        categories.add("Item 1");
+        categories.add("Item 2");
+        categories.add("Item 3");
+        categories.add("Item 4");
+        categories.add("Item 5");
+        categories.add("Item 6");
+
+        // Creating adapter for spinner
+        ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(getContext(), android.R.layout.simple_spinner_item, categories);
+
+        // Drop down layout style - list view with radio button
+        dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+
+        // attaching data adapter to spinner
+        spinner.setAdapter(dataAdapter);
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if (requestCode == 100 && resultCode == getActivity().RESULT_OK) {
+            Place place = Autocomplete.getPlaceFromIntent(data);
+            venue.setText(place.getAddress());
+            locationName = place.getName();
+            latLong = String.valueOf(place.getLatLng());
+
+            Log.d("GOOGLE API", "locationname: " + locationName + " latlong:  " + latLong);
+        } else if (requestCode == AutocompleteActivity.RESULT_ERROR) {
+            Status status = Autocomplete.getStatusFromIntent(data);
+            Log.d("GOOGLE API ERROR", "error: " + status);
+        } else if (requestCode == 101 && resultCode == getActivity().RESULT_OK) {
+            if (data != null) {
+                Uri imageUri = data.getData();
+                InputStream inputStream = null;
+                try {
+                    inputStream = getActivity().getApplicationContext().getContentResolver().openInputStream(imageUri);
+                } catch (FileNotFoundException e) {
+                    e.printStackTrace();
+                }
+                Bitmap bitmap = BitmapFactory.decodeStream(inputStream);
+                bannerImage.setImageURI(data.getData());
+                bannerImage.setImageBitmap(bitmap);
+                bannerText.setVisibility(View.GONE);
+                encodeImage = encodeImage(bitmap);
+                Log.d("IMAGE", "onActivityResult: " + encodeImage);
+            }
+        }
+    }
+
+    @Override
+    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+        // On selecting a spinner item
+        String item = parent.getItemAtPosition(position).toString();
+
+        category = item;
+        // Showing selected spinner item
+        Toast.makeText(parent.getContext(), "Selected: " + item, Toast.LENGTH_LONG).show();
+
+    }
+
+    public void onNothingSelected(AdapterView<?> arg0) {
+        // TODO Auto-generated method stub
+
+    }
+
+
+    private String encodeImage(Bitmap bitmap) {
+        int previewWidth = 150;
+        int previewHeight = bitmap.getHeight() * previewWidth / bitmap.getWidth();
+        Bitmap previewBitmap = Bitmap.createScaledBitmap(bitmap, previewWidth, previewHeight, false);
+        ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+        previewBitmap.compress(Bitmap.CompressFormat.JPEG, 50, byteArrayOutputStream);
+        byte[] bytes = byteArrayOutputStream.toByteArray();
+        return Base64.encodeToString(bytes, Base64.DEFAULT);
+    }
+
+
 }

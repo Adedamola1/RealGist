@@ -1,7 +1,5 @@
 package uk.ac.tees.b1642218.realgist;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.app.ActivityOptions;
 import android.content.Intent;
 import android.os.Bundle;
@@ -13,6 +11,8 @@ import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 public class Splash_screen extends AppCompatActivity {
 
@@ -48,7 +48,7 @@ public class Splash_screen extends AppCompatActivity {
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                Intent intent = new Intent(Splash_screen.this, Login.class);
+                Intent intent = new Intent(Splash_screen.this, MainActivity.class);
 
                 //for animation
                 Pair[] pairs = new Pair[2];
@@ -61,7 +61,7 @@ public class Splash_screen extends AppCompatActivity {
 
 
                 /*startActivity(intent);
-                */
+                 */
 
 
             }

@@ -10,5 +10,10 @@
     <color name="app_color">#305086</color>
     <color name="lightWhite">#F1F2F4</color>
     <color name="accent_color">#E30B0B</color>
+    <color name="search_bar">#95b7ed</color>
+    <color name="dashboard_color">#267bd6</color>
+    <color name="search_btn_color">#26d6cd</color>
+    <color name="add_image">#808080</color>
+
 
 </resources>

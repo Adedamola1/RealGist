@@ -3,6 +3,7 @@ package uk.ac.tees.b1642218.realgist;
 import android.app.ActivityOptions;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.util.Pair;
 import android.view.View;
 import android.view.WindowManager;
@@ -11,13 +12,9 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
 import com.google.android.material.textfield.TextInputLayout;
-import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -205,31 +202,27 @@ public class Sign_up extends AppCompatActivity {
             user.put("email", txtEmail.getEditText().getText().toString().trim());
 
 
-            auth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
-                @Override
-                public void onComplete(@NonNull Task<AuthResult> task) {
-                    if (task.isSuccessful()) {
-                        // Sign in success, update UI with the signed-in user's information
-                        String uid = task.getResult().getUser().getUid();
-                        db.collection("users").document(uid).set(user).addOnCompleteListener(documentReference -> {
-                            FirebaseUser user = auth.getCurrentUser();
-                            updateUI(user);
-                        });
+            auth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(this, task -> {
+                if (task.isSuccessful()) {
+                    // Sign in success, update UI with the signed-in user's information
+                    String uid = task.getResult().getUser().getUid();
+                    db.collection("users").document(uid).set(user).addOnCompleteListener(documentReference -> {
+                        FirebaseUser user1 = auth.getCurrentUser();
+                        Log.d("AUTH", "btnRegisterUser: " + user1.getDisplayName());
+                        updateUI(user1);
+                    });
 
-                        ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation(Sign_up.this, pairs);
-                        startActivity(intent, options.toBundle());
-                        // Toast.makeText(Sign_up.this, R.string.welcome, Toast.LENGTH_LONG).show();
+                    ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation(Sign_up.this, pairs);
+                    startActivity(intent, options.toBundle());
+                    // Toast.makeText(Sign_up.this, R.string.welcome, Toast.LENGTH_LONG).show();
 
-                    } else {
-                        // If sign in fails, display a message to the user.
-                        //Log.w(TAG, "createUserWithEmail:failure", task.getException());
-                        Toast.makeText(Sign_up.this, "Authentication failed." + task.getException().getMessage(),
-                                Toast.LENGTH_SHORT).show();
-                        updateUI(null);
-                    }
+                } else {
+                    // If sign in fails, display a message to the user.
+                    //Log.w(TAG, "createUserWithEmail:failure", task.getException());
+                    Toast.makeText(Sign_up.this, "Authentication failed." + task.getException().getMessage(),
+                            Toast.LENGTH_SHORT).show();
+                    updateUI(null);
                 }
-
-
             });
 
 

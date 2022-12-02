@@ -33,6 +33,7 @@ android {
 }
 
 dependencies {
+    implementation 'com.google.android.libraries.places:places:2.7.0'
     def mdcVersion = '1.0.0'
     implementation 'androidx.appcompat:appcompat:1.5.1'
     implementation 'com.google.android.material:material:1.6.1'
