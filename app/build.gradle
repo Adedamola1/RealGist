@@ -44,7 +44,7 @@ dependencies {
     implementation 'com.google.android.gms:play-services-maps:18.1.0'
     implementation 'com.karumi:dexter:6.2.3'
     implementation 'com.google.firebase:firebase-firestore:24.4.1'
-    
+
     implementation "com.google.android.material:material:<version>${mdcVersion}"
     testImplementation 'junit:junit:4.13.2'
     implementation "com.google.firebase:firebase-auth:21.0.2"
@@ -52,4 +52,6 @@ dependencies {
 
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
     //implementation 'com.google.firebase:firebase-firestore'
+
+    implementation 'com.makeramen:roundedimageview:2.3.0'
 }

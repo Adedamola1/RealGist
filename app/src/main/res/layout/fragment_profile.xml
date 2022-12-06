@@ -104,7 +104,7 @@
                 <com.google.android.material.textfield.TextInputEditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:drawableLeft="@drawable/email_icon"
+                    android:drawableLeft="@drawable/email_alt"
                     android:drawablePadding="10dp"
                     android:text="Deda@Ashake.com" />
 
@@ -119,7 +119,7 @@
                 <com.google.android.material.textfield.TextInputEditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:drawableLeft="@drawable/phone_icon"
+                    android:drawableLeft="@drawable/phone_android"
                     android:drawablePadding="10dp"
                     android:text="08000000000" />
 
@@ -134,7 +134,7 @@
                 <com.google.android.material.textfield.TextInputEditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:drawableLeft="@drawable/email_icon"
+                    android:drawableLeft="@drawable/address_icon"
                     android:drawablePadding="10dp"
                     android:text="TS1 4EP" />
 

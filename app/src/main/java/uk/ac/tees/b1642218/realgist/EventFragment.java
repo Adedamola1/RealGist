@@ -24,6 +24,8 @@ import android.widget.Toast;
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
 import com.google.android.gms.common.api.Status;
 import com.google.android.libraries.places.api.Places;
@@ -36,6 +38,8 @@ import com.google.android.material.datepicker.MaterialDatePicker;
 import com.google.android.material.textfield.TextInputLayout;
 import com.google.android.material.timepicker.MaterialTimePicker;
 import com.google.android.material.timepicker.TimeFormat;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.io.ByteArrayOutputStream;
@@ -45,6 +49,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
+import java.util.UUID;
 
 import javax.annotation.Nullable;
 
@@ -53,8 +58,6 @@ public class EventFragment extends Fragment implements AdapterView.OnItemSelecte
 
     ImageView bannerImage;
     TextView bannerText;
-
-
     private final ActivityResultLauncher<Intent> pickImage = registerForActivityResult(
             new ActivityResultContracts.StartActivityForResult(),
             result -> {
@@ -79,7 +82,8 @@ public class EventFragment extends Fragment implements AdapterView.OnItemSelecte
                 }
             }
     );
-
+    FirebaseAuth auth;
+    FirebaseUser user;
     String locationName, latLong, encodeImage, category, timeText, dateText;
     EditText venue;
     TextInputLayout eventDesc, eventTitle;
@@ -95,6 +99,8 @@ public class EventFragment extends Fragment implements AdapterView.OnItemSelecte
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        auth = FirebaseAuth.getInstance();
+        user = auth.getCurrentUser();
         // Inflate the layout for this fragment
         layout = inflater.inflate(R.layout.fragment_event, container, false);
         Button datepicker = layout.findViewById(R.id.pick_date_btn);
@@ -184,19 +190,31 @@ public class EventFragment extends Fragment implements AdapterView.OnItemSelecte
             HashMap<String, Object> createdEvent = new HashMap<>();
 
             createdEvent.put("eventImage", encodeImage);
+            createdEvent.put("creatorID", String.valueOf(user.getEmail()));
+            createdEvent.put("creatorName", user.getDisplayName());
             createdEvent.put("title", eventTitle.getEditText().getText().toString());
             createdEvent.put("date", dateText);
             createdEvent.put("time", timeText);
             createdEvent.put("about", eventDesc.getEditText().getText().toString());
             createdEvent.put("category", category);
-            createdEvent.put("venue", venue.toString());
+            createdEvent.put("venue", venue.getText().toString());
             createdEvent.put("latlong", latLong);
+            try {
+                createdEvent.put("id", createTransactionID());
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
 
             db.collection("events").add(createdEvent).addOnCompleteListener(documentReference -> {
                 documentReference.addOnSuccessListener(unused -> {
                             Log.d("SUCCESS ADDING EVENT", "added successfully");
                             Toast.makeText(getContext(), "Success", Toast.LENGTH_LONG).show();
+                            FragmentManager fragmentManager = getParentFragmentManager();
+                            FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                            fragmentTransaction.replace(R.id.frameLayout, new HomeFragment());
+                            fragmentTransaction.commit();
                         })
+
                         .addOnFailureListener(e -> {
                             Log.d("ERROR ADDING EVENT", "error: " + e.getMessage());
                         });
@@ -210,6 +228,10 @@ public class EventFragment extends Fragment implements AdapterView.OnItemSelecte
         });
 
         return layout;
+    }
+
+    public String createTransactionID() throws Exception {
+        return UUID.randomUUID().toString().replaceAll("-", "").toUpperCase();
     }
 
     private void createDropdown(Spinner spinner) {
@@ -270,27 +292,24 @@ public class EventFragment extends Fragment implements AdapterView.OnItemSelecte
 
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-        // On selecting a spinner item
         String item = parent.getItemAtPosition(position).toString();
-
         category = item;
-        // Showing selected spinner item
-        Toast.makeText(parent.getContext(), "Selected: " + item, Toast.LENGTH_LONG).show();
-
     }
 
-    public void onNothingSelected(AdapterView<?> arg0) {
+    public void onNothingSelected(AdapterView<?> item) {
         // TODO Auto-generated method stub
+        AdapterView.OnItemClickListener onItemClickListener = item.getOnItemClickListener();
 
+        Log.d("TAG", "onNothingSelected: " + onItemClickListener);
     }
 
 
     private String encodeImage(Bitmap bitmap) {
-        int previewWidth = 150;
+        int previewWidth = 100;
         int previewHeight = bitmap.getHeight() * previewWidth / bitmap.getWidth();
         Bitmap previewBitmap = Bitmap.createScaledBitmap(bitmap, previewWidth, previewHeight, false);
         ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
-        previewBitmap.compress(Bitmap.CompressFormat.JPEG, 50, byteArrayOutputStream);
+        previewBitmap.compress(Bitmap.CompressFormat.PNG, 100, byteArrayOutputStream);
         byte[] bytes = byteArrayOutputStream.toByteArray();
         return Base64.encodeToString(bytes, Base64.DEFAULT);
     }

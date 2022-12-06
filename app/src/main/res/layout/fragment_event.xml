@@ -13,20 +13,20 @@
         android:layout_height="wrap_content"
         android:background="@color/lightWhite" />
 
-    <fragment
-        android:id="@+id/autocomplete_fragment"
-        android:name="com.google.android.libraries.places.widget.AutocompleteSupportFragment"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        tools:layout="@layout/support_simple_spinner_dropdown_item" />
+    <!--    <fragment-->
+    <!--        android:id="@+id/autocomplete_fragment"-->
+    <!--        android:name="com.google.android.libraries.places.widget.AutocompleteSupportFragment"-->
+    <!--        android:layout_width="match_parent"-->
+    <!--        android:layout_height="wrap_content"-->
+    <!--        tools:layout="@layout/support_simple_spinner_dropdown_item" />-->
 
-    <com.google.android.material.appbar.CollapsingToolbarLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/lightWhite"
-        app:contentScrim="@color/cardview_light_background"
-        app:expandedTitleTextAppearance="@style/expandedBarTextStyle"
-        app:layout_scrollFlags="scroll|snap|exitUntilCollapsed" />
+    <!--    <com.google.android.material.appbar.CollapsingToolbarLayout-->
+    <!--        android:layout_width="match_parent"-->
+    <!--        android:layout_height="wrap_content"-->
+    <!--        android:background="@color/lightWhite"-->
+    <!--        app:contentScrim="@color/cardview_light_background"-->
+    <!--        app:expandedTitleTextAppearance="@style/expandedBarTextStyle"-->
+    <!--        app:layout_scrollFlags="scroll|snap|exitUntilCollapsed" />-->
 
 
     <androidx.core.widget.NestedScrollView
@@ -39,7 +39,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="25dp"
-            android:layout_marginTop="10dp">
+            android:layout_marginTop="40dp">
 
             <LinearLayout
                 android:id="@+id/event_cardView"

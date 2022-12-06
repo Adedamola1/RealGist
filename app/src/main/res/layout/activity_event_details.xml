@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="20dp"
+    tools:context=".EventDetails">
+
+    <LinearLayout
+        android:id="@+id/ed_eventCardLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="10dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginBottom="15dp"
+        android:orientation="vertical">
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cardevent"
+            android:layout_width="350dp"
+            android:layout_height="200dp"
+            android:elevation="0dp"
+            app:cardCornerRadius="12dp">
+
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <com.makeramen.roundedimageview.RoundedImageView
+                    android:id="@+id/ed_event_banner"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:scaleType="fitXY"
+                    android:src="@drawable/unnamed" />
+
+            </FrameLayout>
+        </androidx.cardview.widget.CardView>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/ed_eventTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/poppins_black"
+                android:text="THE BRIDGE"
+                android:textSize="25sp" />
+
+            <TextView
+                android:id="@+id/ed_overview"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/poppins"
+                android:text="for months I've been using a class to generate a UUID that was solid between reintalls. My app is about discounts so I rely on this UUID to limit the number of coupons per device." />
+
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/ed_category"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Work and chill" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:fontFamily="@font/poppins_black"
+                android:text="Date &amp; Time"
+                android:textSize="18sp" />
+
+            <TextView
+                android:id="@+id/ed_eventDate"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/poppins"
+                android:text="12th September 2022"
+                android:textSize="14sp" />
+
+            <TextView
+                android:id="@+id/ed_eventTime"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/poppins"
+                android:text="12h:20min"
+                android:textSize="14sp" />
+
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dp"
+                android:fontFamily="@font/poppins_black"
+                android:text="Location and other Details"
+                android:textSize="18sp" />
+
+            <LinearLayout
+                android:id="@+id/ed_event_attendance"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp">
+
+
+                <ImageView
+                    android:layout_width="12dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:src="@drawable/people_icon" />
+
+                <TextView
+                    android:id="@+id/ed_event_atending"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="5dp"
+                    android:layout_marginTop="1dp"
+                    android:ellipsize="end"
+                    android:fontFamily="@font/poppins"
+                    android:gravity="center"
+                    android:maxLines="1"
+                    android:text="15 People attending"
+                    android:textSize="14sp">
+
+                </TextView>
+            </LinearLayout>
+
+            <!--// Event location-->
+            <LinearLayout
+                android:id="@+id/ed_event_location"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp">
+
+
+                <ImageView
+                    android:layout_width="15dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:src="@drawable/location_icon" />
+
+                <TextView
+                    android:id="@+id/ed_location"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="5dp"
+                    android:layout_marginTop="1dp"
+                    android:ellipsize="end"
+                    android:fontFamily="@font/poppins"
+                    android:gravity="center"
+                    android:maxLines="1"
+                    android:text="Location"
+                    android:textSize="14sp">
+
+                </TextView>
+
+
+            </LinearLayout>
+
+            <Button
+                android:id="@+id/ed_attend_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:text="Attend event" />
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+</LinearLayout>

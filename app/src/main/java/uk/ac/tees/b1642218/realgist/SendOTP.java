@@ -1,24 +1,24 @@
 package uk.ac.tees.b1642218.realgist;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.material.textfield.TextInputLayout;
 import com.google.firebase.FirebaseException;
 import com.google.firebase.auth.PhoneAuthCredential;
-import com.google.firebase.auth.PhoneAuthOptions;
 import com.google.firebase.auth.PhoneAuthProvider;
+import com.google.firebase.firestore.FirebaseFirestore;
 import com.hbb20.CountryCodePicker;
 
+import java.util.HashMap;
 import java.util.concurrent.TimeUnit;
 
 public class SendOTP extends AppCompatActivity {
@@ -27,14 +27,19 @@ public class SendOTP extends AppCompatActivity {
     CountryCodePicker codePicker;
     String LOG_TAG = SendOTP.class.getSimpleName();
 
+    FirebaseFirestore db = FirebaseFirestore.getInstance();
+    HashMap<String, Object> user = new HashMap<>();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_send_otp);
 
-          phoneNo = findViewById(R.id.phoneNo);
-         codePicker = findViewById(R.id.countryCode);
+        phoneNo = findViewById(R.id.phoneNo);
+        codePicker = findViewById(R.id.countryCode);
         Button btnGetOTP = findViewById(R.id.btnGetOTP);
+
+        user.put("Phone No", phoneNo.getEditText().getText().toString().trim());
 
 
         final ProgressBar progressBar = findViewById(R.id.progressBar);
@@ -47,10 +52,10 @@ public class SendOTP extends AppCompatActivity {
                 //merge country code and phone number
                 String cCode = codePicker.getSelectedCountryCodeWithPlus();
                 String pNum = phoneNo.getEditText().getText().toString().trim();
-                String userphoneNum  = cCode + pNum;
+                String userphoneNum = cCode + pNum;
 
-                Log.d(LOG_TAG,userphoneNum);
-                if (userphoneNum.isEmpty()){
+                Log.d(LOG_TAG, userphoneNum);
+                if (userphoneNum.isEmpty()) {
                     Toast.makeText(SendOTP.this, "Enter Mobile", Toast.LENGTH_LONG).show();
                     return;
                 }
@@ -62,7 +67,7 @@ public class SendOTP extends AppCompatActivity {
                         60,// user should be able to get an new code in 60 seconds
                         TimeUnit.SECONDS,
                         SendOTP.this,
-                        new PhoneAuthProvider.OnVerificationStateChangedCallbacks(){
+                        new PhoneAuthProvider.OnVerificationStateChangedCallbacks() {
 
                             @Override
                             public void onVerificationCompleted(@NonNull PhoneAuthCredential phoneAuthCredential) {
