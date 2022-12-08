@@ -120,7 +120,7 @@ public class FavouriteFragment extends Fragment implements EventListener {
         btnMyEvents.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getActivity(), MyEvents.class);
+                Intent intent = new Intent(getActivity(), MyEventActivity.class);
                 // intent.putExtras();
                 startActivity(intent);
 

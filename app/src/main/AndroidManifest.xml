@@ -19,6 +19,13 @@
         android:theme="@style/Theme.RealGist"
         tools:targetApi="31">
         <activity
+            android:name=".MyEventActivity"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
             android:name=".MyEvents"
             android:exported="false">
             <meta-data
@@ -27,13 +34,6 @@
         </activity>
         <activity
             android:name=".EventDetails"
-            android:exported="false">
-            <meta-data
-                android:name="android.app.lib_name"
-                android:value="" />
-        </activity>
-        <activity
-            android:name=".Create_event"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
@@ -92,13 +92,6 @@
         </activity>
         <activity
             android:name=".Reset_pwd"
-            android:exported="false">
-            <meta-data
-                android:name="android.app.lib_name"
-                android:value="" />
-        </activity>
-        <activity
-            android:name=".SignUp2"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
