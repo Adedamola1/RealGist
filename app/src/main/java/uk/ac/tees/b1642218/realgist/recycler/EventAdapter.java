@@ -4,6 +4,7 @@ import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.util.Base64;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -76,7 +77,9 @@ public class EventAdapter extends RecyclerView.Adapter<EventAdapter.EventHolder>
 
         void bindEvent(Event events) {
 
-//            Log.d("IMAGE", "bindEvent: " + events.getEventImage());
+
+            Log.d("ATTEND", "bindEvent: " + events.getAttendees().size());
+
             byte[] bytes = Base64.decode(events.getEventImage(), Base64.DEFAULT);
             Bitmap bitmap = BitmapFactory.decodeByteArray(bytes, 0, bytes.length);
             eventBanner.setImageBitmap(bitmap);
@@ -92,10 +95,10 @@ public class EventAdapter extends RecyclerView.Adapter<EventAdapter.EventHolder>
 
 
             String people = "";
-            if (events.getPeopleAttending() == 0) {
+            if (events.getAttendees().size() == 0) {
                 people = "O person attending";
             }
-            people = events.getPeopleAttending() + " person attending";
+            people = events.getAttendees().size() + " person(s) attending";
             eventPeople.setText(people);
         }
     }

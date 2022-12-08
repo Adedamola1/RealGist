@@ -4,6 +4,7 @@ package uk.ac.tees.b1642218.realgist.recycler;
 import com.google.firebase.database.IgnoreExtraProperties;
 
 import java.io.Serializable;
+import java.util.List;
 
 @IgnoreExtraProperties
 public class Event implements Serializable {
@@ -13,14 +14,33 @@ public class Event implements Serializable {
     private String creatorID;
     private String title;
     private String date;
+    private String id;
     private String latLong;
     private String venue;
     private String time;
     private int peopleAttending;
     private String category;
     private String about;
+    private List<String> attendees;
 
     public Event() {
+    }
+
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public List<String> getAttendees() {
+        return attendees;
+    }
+
+    public void setAttendees(List<String> attendees) {
+        this.attendees = attendees;
     }
 
     public String getCreatorName() {

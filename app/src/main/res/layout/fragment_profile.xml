@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -8,47 +9,37 @@
     <!-- TODO: Update blank fragment layout -->
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
         android:orientation="vertical">
 
-        <RelativeLayout
+        <FrameLayout
+            android:id="@+id/profileImageLayout"
             android:layout_width="match_parent"
             android:layout_height="300dp"
-            android:background="@color/app_color"
-            android:padding="20dp">
+            android:background="@color/app_color">
 
-            <ImageView
+
+            <com.makeramen.roundedimageview.RoundedImageView
                 android:id="@+id/profile_selfie"
-                android:layout_width="100dp"
-                android:layout_height="100dp"
-                android:layout_centerVertical="true"
-                android:src="@drawable/passport1" />
+                android:layout_width="120dp"
+                android:layout_height="120dp"
+                android:layout_marginStart="39dp"
+                android:layout_marginTop="120dp"
+                android:background="@color/app_color"
+                android:scaleType="centerCrop"
+                android:src="@drawable/passport1"
+                app:riv_oval="true" />
 
             <TextView
-                android:id="@+id/full_name"
+                android:id="@+id/addImage"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_centerVertical="true"
-                android:layout_marginLeft="10dp"
-                android:layout_toRightOf="@id/profile_selfie"
-                android:fontFamily="@font/baloo_tamma"
-                android:includeFontPadding="false"
-                android:text="Deda Ashake"
-                android:textColor="#fff"
-                android:textSize="20sp" />
+                android:layout_gravity="center"
+                android:text="Add image"
+                android:textColor="@color/add_image" />
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/full_name"
-                android:layout_marginLeft="10dp"
-                android:layout_toRightOf="@id/profile_selfie"
-                android:includeFontPadding="false"
-                android:text="ashake"
-                android:textColor="#fff"
-                android:textSize="14sp" />
-
-        </RelativeLayout>
+        </FrameLayout>
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btnProfileEdit"
@@ -72,6 +63,7 @@
                 android:hint="Username">
 
                 <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/txtUsername"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:drawableLeft="@drawable/username_icon"
@@ -96,6 +88,7 @@
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/profileEmail"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="10dp"
@@ -117,6 +110,7 @@
                 android:hint="Phone No">
 
                 <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/phoneNo"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:drawableLeft="@drawable/phone_android"
@@ -126,10 +120,11 @@
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/address"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="10dp"
-                android:hint="Post Code">
+                android:hint="Address">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:layout_width="match_parent"

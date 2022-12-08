@@ -188,6 +188,7 @@ public class EventFragment extends Fragment implements AdapterView.OnItemSelecte
         createEvent.setOnClickListener(v -> {
             FirebaseFirestore db = FirebaseFirestore.getInstance();
             HashMap<String, Object> createdEvent = new HashMap<>();
+            List<String> attendeesList = new ArrayList<>();
 
             createdEvent.put("eventImage", encodeImage);
             createdEvent.put("creatorID", String.valueOf(user.getEmail()));
@@ -199,6 +200,7 @@ public class EventFragment extends Fragment implements AdapterView.OnItemSelecte
             createdEvent.put("category", category);
             createdEvent.put("venue", venue.getText().toString());
             createdEvent.put("latlong", latLong);
+            createdEvent.put("attendees", attendeesList);
             try {
                 createdEvent.put("id", createTransactionID());
             } catch (Exception e) {
@@ -240,12 +242,13 @@ public class EventFragment extends Fragment implements AdapterView.OnItemSelecte
 
         // Spinner Drop down elements
         List<String> categories = new ArrayList<>();
-        categories.add("Item 1");
-        categories.add("Item 2");
-        categories.add("Item 3");
-        categories.add("Item 4");
-        categories.add("Item 5");
-        categories.add("Item 6");
+        categories.add("Education");
+        categories.add("Health Talk");
+        categories.add("Entertainment");
+        categories.add("Politics");
+        categories.add("Relationship");
+        categories.add("Work and Chill");
+        categories.add("Other");
 
         // Creating adapter for spinner
         ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(getContext(), android.R.layout.simple_spinner_item, categories);
@@ -305,11 +308,11 @@ public class EventFragment extends Fragment implements AdapterView.OnItemSelecte
 
 
     private String encodeImage(Bitmap bitmap) {
-        int previewWidth = 100;
+        int previewWidth = 150;
         int previewHeight = bitmap.getHeight() * previewWidth / bitmap.getWidth();
         Bitmap previewBitmap = Bitmap.createScaledBitmap(bitmap, previewWidth, previewHeight, false);
         ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
-        previewBitmap.compress(Bitmap.CompressFormat.PNG, 100, byteArrayOutputStream);
+        previewBitmap.compress(Bitmap.CompressFormat.JPEG, 100, byteArrayOutputStream);
         byte[] bytes = byteArrayOutputStream.toByteArray();
         return Base64.encodeToString(bytes, Base64.DEFAULT);
     }

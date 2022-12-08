@@ -31,9 +31,10 @@
 
                 <com.makeramen.roundedimageview.RoundedImageView
                     android:id="@+id/ed_event_banner"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
+                    android:layout_width="350dp"
+                    android:layout_height="200dp"
                     android:scaleType="fitXY"
+
                     android:src="@drawable/unnamed" />
 
             </FrameLayout>

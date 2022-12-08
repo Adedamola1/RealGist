@@ -19,7 +19,7 @@ public class MainActivity extends AppCompatActivity {
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
         replaceFragment(new HomeFragment());
-        
+
 
         binding.bottomNaviView.setOnItemSelectedListener(item -> {
 
@@ -37,11 +37,16 @@ public class MainActivity extends AppCompatActivity {
                 case R.id.profile:
                     replaceFragment(new ProfileFragment());
                     break;
+                case R.id.search:
+                    replaceFragment(new SearchFragment());
+                    break;
+
             }
 
             return true;
         });
     }
+
 
     private void replaceFragment(Fragment fragment) {
         FragmentManager fragmentManager = getSupportFragmentManager();

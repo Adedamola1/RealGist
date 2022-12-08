@@ -5,6 +5,7 @@
     <string name="forgot_pwd_msg">Your Registered Email address</string>
     <string name="request_pwd_reset">Recover Password</string>
     <string name="OTP_1stmessage">An OPT will be sent to your registered Mobile number</string>
+    <string name="reset_password">An OPT will be sent to your registered email</string>
     <string name="OTP_2ndmessage">Enter the OTP sent to</string>
     <string name="didnt_receive_the_otp">Didnt receive the OTP</string>
     <string name="resend_otp">Resend OTP</string>
@@ -21,7 +22,7 @@
     <string name="dashboard_heading">Find Real Gists happening around you</string>
     <string name="dashboard_sub_title">480 events around you</string>
     <string name="search_bar_hint">search for an event....</string>
-    <string name="dummy_text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus efficitur mauris quis ipsum fringilla, viverra rutrum libero viverra. Donec congue vel tellus placerat convallis. Suspendisse potenti. Nunc vel nisi lorem. Nulla ac nulla nisl. Ut tempus iaculis orci. Praesent consectetur rutrum auctor. Vivamus finibus magna non orci tempor laoreet at in mauris. In tellus enim, consequat at sapien a, pellentesque convallis sapien. Phasellus in metus eu arcu pharetra porttitor. Proin euismod nulla eros, maximus mollis mi laoreet ac. Proin sed porta mauris, id scelerisque nibh.</string>
+    <!--    <string name="dummy_text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus efficitur mauris quis ipsum fringilla, viverra rutrum libero viverra. Donec congue vel tellus placerat convallis. Suspendisse potenti. Nunc vel nisi lorem. Nulla ac nulla nisl. Ut tempus iaculis orci. Praesent consectetur rutrum auctor. Vivamus finibus magna non orci tempor laoreet at in mauris. In tellus enim, consequat at sapien a, pellentesque convallis sapien. Phasellus in metus eu arcu pharetra porttitor. Proin euismod nulla eros, maximus mollis mi laoreet ac. Proin sed porta mauris, id scelerisque nibh.</string>-->
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 

@@ -69,12 +69,14 @@ public class HomeFragment extends Fragment implements EventListener {
     }
 
     private void eventChangeListener() {
+
         Log.d("FIREBASE", "eventChangeListener: " + user.getUid());
-        db.collection("events").whereNotEqualTo("creatorID", user.getEmail()).addSnapshotListener((value, error) -> {
+        db.collection("events").orderBy("creatorID").addSnapshotListener((value, error) -> {
+            // db.collection("events").whereNotEqualTo("creatorID", user.getEmail()).addSnapshotListener((value, error) -> {
             if (error != null) {
 
                 if (progressDialog.isShowing()) progressDialog.dismiss();
-                Log.d("FETCHING", "error" + error.getMessage());
+                //Log.d("FETCHING", "error" + error.getMessage());
                 return;
             }
 
@@ -85,8 +87,9 @@ public class HomeFragment extends Fragment implements EventListener {
                 }
 
                 eventAdapter.notifyDataSetChanged();
-                if (progressDialog.isShowing()) progressDialog.dismiss();
+                //if (progressDialog.isShowing()) progressDialog.dismiss();
             }
+            if (progressDialog.isShowing()) progressDialog.dismiss();
 
 
         });

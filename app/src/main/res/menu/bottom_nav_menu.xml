@@ -7,10 +7,15 @@
     <item android:title="Event"
         android:id="@+id/event"
         android:icon="@drawable/schedule_meeting"/>
+    <item android:title="Search"
+        android:icon="@drawable/search_icon"
+        android:id="@+id/search"/>
     <item android:title="Favourite"
         android:id="@+id/favourite"
         android:icon="@drawable/favorite_icon"/>
     <item android:title="Profile"
         android:icon="@drawable/ic_baseline_person_24"
         android:id="@+id/profile"/>
+
+
 </menu>
