@@ -69,6 +69,11 @@
                 android:layout_height="wrap_content"
                 android:text="Work and chill" />
 
+            <com.google.android.material.divider.MaterialDivider
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:padding="20dp" />
+
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -93,6 +98,12 @@
                 android:text="12h:20min"
                 android:textSize="14sp" />
 
+            <com.google.android.material.divider.MaterialDivider
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginTop="20dp"
+                android:padding="20dp" />
+
 
             <TextView
                 android:layout_width="match_parent"
@@ -101,6 +112,7 @@
                 android:fontFamily="@font/poppins_black"
                 android:text="Location and other Details"
                 android:textSize="18sp" />
+
 
             <LinearLayout
                 android:id="@+id/ed_event_attendance"

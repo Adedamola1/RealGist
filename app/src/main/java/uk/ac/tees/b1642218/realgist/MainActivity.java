@@ -34,9 +34,9 @@ public class MainActivity extends AppCompatActivity {
                 case R.id.favourite:
                     replaceFragment(new FavouriteFragment());
                     break;
-//                case R.id.profile:
-//                    replaceFragment(new ProfileFragment());
-//                    break;
+                case R.id.profile:
+                    replaceFragment(new ProfileFragment());
+                    break;
                 case R.id.search:
                     replaceFragment(new SearchFragment());
                     break;

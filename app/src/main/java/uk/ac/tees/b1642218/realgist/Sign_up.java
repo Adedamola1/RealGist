@@ -200,6 +200,7 @@ public class Sign_up extends AppCompatActivity {
             user.put("lastname", txtLastName.getEditText().getText().toString().trim());
             user.put("Username", txtUsername.getEditText().getText().toString().trim());
             user.put("email", txtEmail.getEditText().getText().toString().trim());
+            user.put("address", "");
 
 
             auth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(this, task -> {

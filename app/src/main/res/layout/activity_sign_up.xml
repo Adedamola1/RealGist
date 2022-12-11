@@ -117,48 +117,6 @@
 
             </com.google.android.material.textfield.TextInputLayout>
 
-
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginTop="20dp">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="10dp"
-                    android:text="Gender"
-                    android:textSize="18sp" />
-
-                <RadioGroup
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:layout_gravity="left"
-                    android:layout_marginTop="10dp"
-                    android:orientation="horizontal">
-
-                    <RadioButton
-                        android:id="@+id/radioBtnMale"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Male" />
-
-                    <RadioButton
-                        android:id="@+id/radioBtnFemale"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Female" />
-
-                    <RadioButton
-                        android:id="@+id/radioBtnOther"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="other" />
-                </RadioGroup>
-
-            </RelativeLayout>
-
-
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/txtPwd"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"

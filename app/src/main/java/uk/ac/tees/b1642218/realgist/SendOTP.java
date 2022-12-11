@@ -25,6 +25,7 @@ public class SendOTP extends AppCompatActivity {
 
     TextInputLayout phoneNo;
     CountryCodePicker codePicker;
+    Button sendOTBbackBtn;
     String LOG_TAG = SendOTP.class.getSimpleName();
 
     FirebaseFirestore db = FirebaseFirestore.getInstance();
@@ -38,6 +39,7 @@ public class SendOTP extends AppCompatActivity {
         phoneNo = findViewById(R.id.phoneNo);
         codePicker = findViewById(R.id.countryCode);
         Button btnGetOTP = findViewById(R.id.btnGetOTP);
+
 
         user.put("Phone No", phoneNo.getEditText().getText().toString().trim());
 
@@ -99,5 +101,14 @@ public class SendOTP extends AppCompatActivity {
             }
 
         });
+//        sendOTBbackBtn.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                onBackPressed();
+//            }
+//        });
+//
     }
 }
+
+

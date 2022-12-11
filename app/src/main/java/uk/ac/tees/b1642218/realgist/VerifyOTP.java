@@ -110,7 +110,8 @@ public class VerifyOTP extends AppCompatActivity {
                                     progressBar.setVisibility(View.VISIBLE);
                                     btnVerify.setVisibility(View.INVISIBLE);
                                     if (task.isSuccessful()) {
-                                        Intent intent = new Intent(getApplicationContext(), Reset_pwd.class);
+                                        Intent intent = new Intent(getApplicationContext(),
+                                                Login.class);
                                         Toast.makeText(VerifyOTP.this, "The Verification Successful", Toast.LENGTH_LONG).show();
 
                                         //storeNewUserData();

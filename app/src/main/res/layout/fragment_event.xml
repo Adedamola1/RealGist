@@ -13,21 +13,6 @@
         android:layout_height="wrap_content"
         android:background="@color/lightWhite" />
 
-    <!--    <fragment-->
-    <!--        android:id="@+id/autocomplete_fragment"-->
-    <!--        android:name="com.google.android.libraries.places.widget.AutocompleteSupportFragment"-->
-    <!--        android:layout_width="match_parent"-->
-    <!--        android:layout_height="wrap_content"-->
-    <!--        tools:layout="@layout/support_simple_spinner_dropdown_item" />-->
-
-    <!--    <com.google.android.material.appbar.CollapsingToolbarLayout-->
-    <!--        android:layout_width="match_parent"-->
-    <!--        android:layout_height="wrap_content"-->
-    <!--        android:background="@color/lightWhite"-->
-    <!--        app:contentScrim="@color/cardview_light_background"-->
-    <!--        app:expandedTitleTextAppearance="@style/expandedBarTextStyle"-->
-    <!--        app:layout_scrollFlags="scroll|snap|exitUntilCollapsed" />-->
-
 
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
@@ -39,7 +24,28 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="25dp"
-            android:layout_marginTop="40dp">
+            android:layout_marginTop="40dp"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
+                    android:fontFamily="@font/poppins_black"
+                    android:text="Schedule an  Event"
+                    android:textSize="20sp" />
+
+                <com.google.android.material.divider.MaterialDivider
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="20dp" />
+            </LinearLayout>
+
 
             <LinearLayout
                 android:id="@+id/event_cardView"
@@ -121,6 +127,7 @@
                         android:layout_centerVertical="true"
                         android:layout_marginLeft="20dp"
                         android:layout_toRightOf="@id/pick_date_btn"
+                        android:fontFamily="@font/poppins"
                         android:text="Selected Date"
                         android:textSize="20sp" />
 
@@ -151,6 +158,7 @@
                         android:layout_marginLeft="20dp"
                         android:layout_marginTop="13dp"
                         android:layout_toRightOf="@id/pick_time_button"
+                        android:fontFamily="@font/poppins"
                         android:text="Selected Time"
                         android:textSize="20sp" />
                 </RelativeLayout>

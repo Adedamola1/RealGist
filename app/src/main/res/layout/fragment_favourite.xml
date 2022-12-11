@@ -4,12 +4,50 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:padding="20dp"
     tools:context=".FavouriteFragment">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical">
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:layout_weight="1"
+                android:fontFamily="@font/poppins_black"
+                android:text="Attending Events"
+                android:textAlignment="textStart"
+                android:textSize="20sp" />
+
+            <Button
+                android:id="@+id/btnMyEvents"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_gravity="right"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp"
+                android:elevation="0dp"
+                android:fontFamily="@font/poppins"
+                android:onClick="btnMyEvents"
+                android:text="MY Events"
+                android:textColor="@color/white" />
+        </LinearLayout>
+
+        <com.google.android.material.divider.MaterialDivider
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp" />
+
 
         <androidx.core.widget.NestedScrollView
             android:layout_width="match_parent"
@@ -26,7 +64,6 @@
                     android:id="@+id/event_fav_rc"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:padding="20dp"
                     android:visibility="gone"
                     app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
 
@@ -35,10 +72,10 @@
                     android:id="@+id/no_event"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:fontFamily="@font/poppins"
                     android:gravity="center"
-                    android:padding="20dp"
                     android:text="No Event being attended"
-                    android:textSize="25dp"
+                    android:textSize="18dp"
                     android:visibility="gone" />
 
             </LinearLayout>
@@ -46,16 +83,6 @@
 
         </androidx.core.widget.NestedScrollView>
 
-        <Button
-            android:id="@+id/btnMyEvents"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="right"
-            android:layout_marginTop="5dp"
-            android:layout_marginBottom="5dp"
-            android:elevation="0dp"
-            android:onClick="btnMyEvents"
-            android:text="MY Events" />
 
     </LinearLayout>
 

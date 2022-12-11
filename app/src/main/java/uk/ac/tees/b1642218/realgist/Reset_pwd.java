@@ -51,7 +51,7 @@ public class Reset_pwd extends AppCompatActivity {
         btnResetPassword.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(Reset_pwd.this, VerifyOTP.class);
+                Intent intent = new Intent(Reset_pwd.this, Login.class);
                 startActivity(intent);
             }
         });

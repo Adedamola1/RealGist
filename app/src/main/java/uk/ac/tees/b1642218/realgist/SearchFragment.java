@@ -41,11 +41,11 @@ public class SearchFragment extends Fragment implements OnMapReadyCallback {
         super.onActivityCreated(savedInstanceState);
 
         if (checkPermission) {
-            SupportMapFragment supportMapFragment = (SupportMapFragment) this.getChildFragmentManager().findFragmentById(R.id.mapviewFrag);
+            SupportMapFragment supportMapFragment = (SupportMapFragment) this.getChildFragmentManager().findFragmentById(R.id.mapFragment);
             ;
             if (supportMapFragment == null) {
-                SupportMapFragment fragy = SupportMapFragment.newInstance();
-                fragy = (SupportMapFragment) this.getChildFragmentManager().findFragmentById(R.id.mapviewFrag);
+                SupportMapFragment fragment = SupportMapFragment.newInstance();
+                fragment = (SupportMapFragment) this.getChildFragmentManager().findFragmentById(R.id.mapFragment);
             }
 
 
@@ -80,6 +80,7 @@ public class SearchFragment extends Fragment implements OnMapReadyCallback {
         map = googleMap;
         Log.d(TAG, String.valueOf(map));
         map.setMyLocationEnabled(true);
+        map.setMapType(GoogleMap.MAP_TYPE_HYBRID);
     }
 }
 
