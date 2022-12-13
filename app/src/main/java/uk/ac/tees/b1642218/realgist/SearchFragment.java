@@ -80,7 +80,7 @@ public class SearchFragment extends Fragment implements OnMapReadyCallback {
         map = googleMap;
         Log.d(TAG, String.valueOf(map));
         map.setMyLocationEnabled(true);
-        map.setMapType(GoogleMap.MAP_TYPE_HYBRID);
+        map.setMapType(GoogleMap.MAP_TYPE_NORMAL);
     }
 }
 

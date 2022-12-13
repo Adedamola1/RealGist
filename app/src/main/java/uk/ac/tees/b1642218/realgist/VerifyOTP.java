@@ -111,7 +111,7 @@ public class VerifyOTP extends AppCompatActivity {
                                     btnVerify.setVisibility(View.INVISIBLE);
                                     if (task.isSuccessful()) {
                                         Intent intent = new Intent(getApplicationContext(),
-                                                Login.class);
+                                                MainActivity.class);
                                         Toast.makeText(VerifyOTP.this, "The Verification Successful", Toast.LENGTH_LONG).show();
 
                                         //storeNewUserData();
